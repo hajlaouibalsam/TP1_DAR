@@ -8,8 +8,8 @@ public class Server
 
 	public static void main(String[] args)throws IOException
 	{
-		ServerSocket serversocket = null;
-		Socket socket = null;
+		ServerSocket serversocket=null;
+		Socket socket=null;
 		try
 		{
 			serversocket = new ServerSocket(1234);
@@ -18,12 +18,19 @@ public class Server
 			socket = serversocket.accept();
 			System.out.println("un client est connecté");
 			
-		}		
+			InputStream is=socket.getInputStream();
+			int a=is.read();
+			
+			int b=a*5;
+			
+			OutputStream os=socket.getOutputStream();
+			os.write(b);
+		}
+		
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
 		socket.close();
 	}
 
